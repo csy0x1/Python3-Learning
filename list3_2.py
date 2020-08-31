@@ -26,6 +26,9 @@ while(len(invitations)>2):
 for name in invitations:
     message=name+' Come to play'
     print(message)
+ppl=len(invitations)
+message='I invite '+str(ppl)+' people to come'
+print(message)
 
 del invitations[0]
 del invitations[0]
