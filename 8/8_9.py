@@ -9,7 +9,7 @@ show_magicians(magicians)
 
 #8_10
 def make_great(magicians):
-    i=0
+    i=0 
     for i in range(len(magicians)):
         temp=magicians.pop()+' the Great'
         magicians.insert(0,temp)
