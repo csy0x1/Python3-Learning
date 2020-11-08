@@ -1,5 +1,14 @@
 {
     "python.formatting.provider": "yapf",
     "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": ["--disable=C,broad-except,unused-variable",],
+    "python.linting.pylintArgs": ["----extension-pkg-whitelist=1xml","--disable=C,broad-except,unused-variable"],
+    "python.autoComplete.extraPaths": [
+        "D:/Python/Lib/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "D:/Python/Lib/site-packages"
+    ],
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none"
+    },
 }

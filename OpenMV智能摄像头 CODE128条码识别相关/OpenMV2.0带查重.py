@@ -4,11 +4,10 @@ print('connected')
 c=conn.cursor()
 filename='G:/result.txt' #指定摄像头识别结果输出文件目录
 cursor = c.execute("SELECT amount,value from CODE where ID=0") #链接数据库，获取最新的ID编号
-amount=0
-count=0
-iid=0
+amount=0    #数量
+iid=0       #数据库ID编号
 
-for row in cursor:
+for row in cursor:  #读取最后一次存入数据库的内容
     cid=row[0]
     temp=row[1]
 
@@ -16,9 +15,9 @@ def CheckDuplicate():
     cdcom="select * from code where value='%s' AND ID!=0"%(content)
     items = c.execute(cdcom)
     for item in items:
-        eid=item[0]
+        eid=item[0]      #获取已存在内容的ID
         evalue=item[1]   #将已在数据库中的内容赋值给变量evalue
-        eamount=item[2]
+        eamount=item[2] #获取已存在内容的数量
         if content==evalue:
             global amount,iid
             amount=eamount
@@ -50,7 +49,6 @@ while True:
             sqlcom="update code set VALUE = '%s',AMOUNT=%s where ID=0"%(temp,cid)  #SQL指令
             c.execute(sqlcom)
             conn.commit()
-            count+=1
             removefile()
         else:
             print(content)
@@ -62,7 +60,6 @@ while True:
             sqlcom="update code set value = '%s',amount=%s where ID=0"%(temp,cid)  #SQL指令
             c.execute(sqlcom)
             conn.commit()
-            count+=1
             removefile()
         time.sleep(3)
     except (FileNotFoundError,OSError):
