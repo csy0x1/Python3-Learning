@@ -18,9 +18,9 @@ class Ship():
         self.moving_left=False  #移动标志
 
     def update(self):
-        if self.moving_right:
+        if self.moving_right and self.rect.right < self.screen_rect.right:
             self.center+=self.ai_settings.ship_speed_factor
-        if self.moving_left:
+        if self.moving_left and self.rect.left > self.screen_rect.left:
             self.center-=self.ai_settings.ship_speed_factor
         self.rect.centerx=self.center   #根据self.center更新rect对象
 

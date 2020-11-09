@@ -11,7 +11,7 @@ def run_game():
 
     #bg_color=(128,128,128)    #背景色
 
-    ship=Ship(screen)   #创建飞船
+    ship=Ship(ai_settings,screen)   #创建飞船
 
     while True:
         gf.check_events(ship)
