@@ -27,6 +27,4 @@ def error():  #默认选项
 def Search_Main():  #单独查找选项
     pass
 
-Search_Menu()
-
 

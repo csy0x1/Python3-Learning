@@ -11,7 +11,8 @@ Todo:
 '''
 
 import prettytable as pt
-from create import Create
+from create import Input_Info
+from search import Search_Menu
 
 def Main_Menu():    #显示主菜单，提供选项信息
     table=pt.PrettyTable()  #创建选项表
@@ -24,7 +25,9 @@ def Main_Menu():    #显示主菜单，提供选项信息
 
 def Choose_Function():  #用户选择所需功能，并跳转至相应界面
     Function={
-        '1':Create,
+        '1':Input_Info,
+        '2':exit,
+        '3':Search_Menu,
         'quit':exit,
     }
     choice=input('请选择功能，输入quit退出:')
@@ -33,5 +36,6 @@ def Choose_Function():  #用户选择所需功能，并跳转至相应界面
 def error():  #默认选项
     print('选项错误')
 
-Main_Menu()
-Choose_Function()
+if __name__=='__main__':
+    Main_Menu()
+    Choose_Function()
