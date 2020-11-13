@@ -11,7 +11,7 @@ def Input_Info():
     flag=True   #修改信息标识符
     os.system('cls')
     Teacher={}
-    Teacher['ID']=input('请输入你的ID: ')
+    Teacher['工号']=input('请输入你的工号: ')
     Teacher['姓名']=input('请输入你的姓名: ')
     Teacher['年龄']=input('请输入你的年龄: ')
     Teacher['职称']=input('请输入你的职称: ')
@@ -51,3 +51,6 @@ def Show_Info(info):
     for key,value in info.items():
         table.add_row([key,value])
     print(table.get_string(title='教师信息'))
+
+if __name__=='__main__':    #调试用
+    Input_Info()

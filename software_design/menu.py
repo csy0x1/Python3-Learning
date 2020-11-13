@@ -2,12 +2,13 @@
 教师管理系统主菜单
 Todo:
 1.增    create.py   11.12 updated
-2.删    (WIP)
+2.删    (WIP)   delete.py   11.13 updated
 3.查    search.py   11.13 updated
 4.改
-5.权限系统
+5.权限系统*
 6.开课系统
 7.工作量检索系统
+8.教师ID自动分配*
 '''
 
 import prettytable as pt

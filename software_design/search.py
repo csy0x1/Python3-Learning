@@ -5,7 +5,7 @@ import prettytable as pt
 import os,time
 from database import Search_All, Search_Info
 keytosqlcolumn={    #条件搜索信息类型转换成SQL列名
-    'ID':'ID',
+    '工号':'ID',
     '姓名':'Name',
     '年龄':'Age',
     '职称':'Title',
@@ -38,7 +38,7 @@ def Search_Main():  #条件搜索选项
     while True:
         os.system('cls')
         print('请输入一项搜索的信息类型及内容，以空格分隔，如:"电话号码 123"')
-        print('可选数据类型: ID,姓名,年龄,职称,系名,主授课程,手机号码,联系地址')
+        print('可选数据类型: 工号,姓名,年龄,职称,系名,主授课程,手机号码,联系地址')
         key,value=input('请输入要搜索的信息: ').split()
         if(key in keytosqlcolumn):
             key=keytosqlcolumn[key]
@@ -48,5 +48,5 @@ def Search_Main():  #条件搜索选项
             print('信息类型错误，请检查后重试')
             time.sleep(1)
 
-
-Search_Main()
+if __name__=='__main__':    #调试用
+    Search_Menu()

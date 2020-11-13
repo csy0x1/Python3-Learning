@@ -15,7 +15,7 @@ def Insert_Info(dict):  #录入教师信息
     conn.commit()   #提交事务
     conn.close()    #关闭数据库连接
 
-def Search_Info(key,value):
+def Search_Info(key,value):     #条件搜索信息
     conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
     c=conn.cursor() #数据库指针
     '''
@@ -25,17 +25,28 @@ def Search_Info(key,value):
         info=c.execute("select * from Teachers_info where %s Like '%s'"%(key,value))
     else:
     '''
-    info=c.execute("select * from Teachers_info where %s=%s"%(key,value))
-    table=from_db_cursor(info)  #检索不到时仍会返回一张空表
-    print(table)
+    info=c.execute("select * from Teachers_info where %s='%s'"%(key,value))
+    table=from_db_cursor(info)  
+    if(len(list(table))==0):    #若查询不到信息，返回的表长为0
+        print('查找不到相关信息!')
+    else:
+        print(table.get_string(title='查询结果'))
     c.close()
     conn.close()
 
-def Search_All():
+def Search_All():   #显示全部信息
     conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
     c=conn.cursor() #数据库指针
     info = c.execute("select * from Teachers_info")
     table=from_db_cursor(info)
     print(table.get_string(title='全部教师信息'))
+    c.close()
+    conn.close()
+
+def Delete(tid):
+    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    c=conn.cursor() #数据库指针
+    c.execute("delete from Teachers_info where ID=%s"%(tid)) #删除工号为tid的记录
+    conn.commit()
     c.close()
     conn.close()
