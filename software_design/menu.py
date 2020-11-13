@@ -1,5 +1,10 @@
 '''
 教师管理系统主菜单
+Todo:
+1.增
+2.删
+3.查 (WIP)
+4.改
 '''
 
 import prettytable as pt
