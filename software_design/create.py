@@ -17,7 +17,7 @@ def Input_Info():
     Teacher['职称']=input('请输入你的职称: ')
     Teacher['系名']=input('请输入你所在系: ')
     Teacher['主授课程']=input('请输入你主要教授的课程: ')
-    Teacher['电话号码']=input('请输入你的电话号码: ')
+    Teacher['手机号码']=input('请输入你的手机号码: ')
     Teacher['联系地址']=input('请输入你的联系地址: ')
     while flag:
         Show_Info(Teacher)

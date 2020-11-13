@@ -1,9 +1,9 @@
 '''
 教师管理系统主菜单
 Todo:
-1.增 create.py
-2.删
-3.查 (WIP) search.py
+1.增    create.py   11.12 updated
+2.删    (WIP)
+3.查    search.py   11.13 updated
 4.改
 5.权限系统
 6.开课系统
