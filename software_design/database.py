@@ -2,8 +2,10 @@
 负责控制数据库相关功能
 '''
 
-import sqlite3
+import sqlite3,prettytable
 from sqlite3.dbapi2 import connect
+
+from prettytable import from_db_cursor
 
 def Insert_Info(dict):  #录入教师信息
     conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
@@ -12,3 +14,15 @@ def Insert_Info(dict):  #录入教师信息
     c.close()   #关闭数据库指针
     conn.commit()   #提交事务
     conn.close()    #关闭数据库连接
+
+def Search_Info(dict):
+    pass
+
+def Search_All():
+    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    c=conn.cursor() #数据库指针
+    info = c.execute("select * from Teachers_info")
+    table=from_db_cursor(info)
+    print(table.get_string(title='全部教师信息'))
+    c.close()
+    conn.close()

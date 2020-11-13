@@ -51,5 +51,3 @@ def Show_Info(info):
     for key,value in info.items():
         table.add_row([key,value])
     print(table.get_string(title='教师信息'))
-
-Input_Info()
