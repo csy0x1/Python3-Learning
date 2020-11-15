@@ -22,7 +22,7 @@ def Input_Info():
     while flag:
         Show_Info(Teacher)
         print('请确认信息无误，若要修改，请按以下格式键入新内容，否则按回车提交')
-        info=input('请输入要修改的信息名以及内容，一次一条，以空格分隔(如姓名 修改后): ')
+        info=input('请输入要修改的信息名以及内容，一次一条，以空格分隔(如姓名 XX): ')
         if(info==''):   #检测用户提交
             flag=False
             Insert_Info(Teacher)
@@ -39,7 +39,7 @@ def Input_Info():
             Teacher[key]=value
         else:
             print('键值不存在!')
-            time.sleep(2)
+            time.sleep(1)
             
 
 

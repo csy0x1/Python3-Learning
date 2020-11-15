@@ -39,10 +39,16 @@ def Search_Main():  #条件搜索选项
         os.system('cls')
         print('请输入一项搜索的信息类型及内容，以空格分隔，如:"电话号码 123"')
         print('可选数据类型: 工号,姓名,年龄,职称,系名,主授课程,手机号码,联系地址')
-        key,value=input('请输入要搜索的信息: ').split()
+        try:
+            key,value=input('请输入要搜索的信息: ').split()
+        except(ValueError):
+            print('输入错误，请检查后再试')
+            time.sleep(1)
+            continue
         if(key in keytosqlcolumn):
             key=keytosqlcolumn[key]
-            Search_Info(key,value)
+            table=Search_Info(key,value)
+            print(table.get_string(title='查询结果'))
             break
         else:
             print('信息类型错误，请检查后重试')
