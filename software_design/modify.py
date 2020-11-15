@@ -12,7 +12,7 @@ def Modify_Main(tid):  #修改信息
         while True:
             os.system('cls')
             print(table.get_string(title='查询结果'))
-            print('请输入一项要修改的信息类型及内容，以空格分隔，如:"电话号码 123"')
+            print('请输入一项要修改的信息类型及内容，以空格分隔，如:"手机号码 123"')
             print('可选数据类型: 工号,姓名,年龄,职称,系名,主授课程,手机号码,联系地址')
             try:
                 key,value=input('请输入要修改的信息: ').split()

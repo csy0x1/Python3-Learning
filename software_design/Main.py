@@ -4,7 +4,7 @@ Todo:
 1.增    create.py   11.12 updated
 2.删    delete.py   11.14 updated
 3.查    search.py   11.13 updated
-4.改    modify.py   11.14 updated
+4.改    modify.py   11.15 updated
 5.权限系统*
 6.开课系统    Create_Course.py    11.15 updated
 7.工作量检索系统    @search.py    11.15 updated
@@ -27,6 +27,7 @@ def Main_Menu():    #显示主菜单，提供选项信息
     table.add_row(['4','删除教师信息'])
     table.add_row(['5','开设课程管理'])
     print(table)
+    Choose_Function()
 
 def Choose_Function():  #用户选择所需功能，并跳转至相应界面
     Function={

@@ -8,8 +8,10 @@ import sqlite3,prettytable
 from sqlite3.dbapi2 import IntegrityError, InternalError, connect
 from prettytable import from_db_cursor
 
+filename='C://Users//Desktop-P21//TeachersDB.db'    #数据库文件
+
 def Insert_Info(dict):  #录入教师信息
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     c.execute("insert into Teachers_info values(?,?,?,?,?,?,?,?,0)",[dict['工号'],dict['姓名'],dict['年龄'],dict['职称'],dict['系名'],dict['主授课程'],dict['手机号码'],dict['联系地址']])
     c.close()   #关闭数据库指针
@@ -17,7 +19,7 @@ def Insert_Info(dict):  #录入教师信息
     conn.close()    #关闭数据库连接
 
 def Search_Info(key,value):     #条件搜索信息
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     '''
     模糊搜索尝试
@@ -39,7 +41,7 @@ def Search_Info(key,value):     #条件搜索信息
         return table
 
 def Search_All():   #显示全部信息
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     info = c.execute("select * from Teachers_info")
     table=from_db_cursor(info)
@@ -48,7 +50,7 @@ def Search_All():   #显示全部信息
     conn.close()
 
 def Delete(tid):    #删除教师信息
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     c.execute("delete from Teachers_info where ID=%s"%(tid)) #删除工号为tid的记录
     conn.commit()
@@ -56,15 +58,15 @@ def Delete(tid):    #删除教师信息
     conn.close()
 
 def Modify(key,value,tid):    #修改教师信息
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
-    c.execute("update Teachers_info set %s='%s' where ID=%s"%(key,value,tid))
+    c.execute("update Teachers_info set '%s'='%s' where ID='%s'"%(key,value,tid))
     conn.commit()
     c.close()
     conn.close()
 
 def Search_Course(): #查看课程
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     info=c.execute("select ID as 工号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
         from Teachers_info inner join course_info\
@@ -87,7 +89,7 @@ def Search_Course(): #查看课程
     '''
 
 def Insert_Course(course): #开设课程
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     conn.execute("PRAGMA foreign_keys = 1")
     c=conn.cursor() #数据库指针
     try:
@@ -101,7 +103,7 @@ def Insert_Course(course): #开设课程
         return False
 
 def Search_Hour():  #工作量查询
-    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     info=c.execute("select ID as 工号,Name as 姓名,Total_Course_Hour as 总开课学时\
         from Teachers_info inner join course_info\
@@ -117,6 +119,7 @@ def Search_Hour():  #工作量查询
     conn.close()
 
     '''
+    应使用的SQL语句
     select ID as 工号,Name as 姓名,Total_Course_Hour as 总开课学时 from Teachers_info inner join course_info
             On Teachers_info.ID=Course_info.T_ID
         Union

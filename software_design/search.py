@@ -30,7 +30,7 @@ def Choose_Function():  #用户选择所需功能，并跳转至相应界面
         '3':Search_Hour,
         'quit':exit,
     }
-    choice=input('请选择功能，输入quit退出:')
+    choice=input('请选择功能，输入quit退出: ')
     Function.get(choice,error)()
 
 def error():  #默认选项
@@ -39,7 +39,7 @@ def error():  #默认选项
 def Search_Main():  #条件搜索选项
     while True:
         os.system('cls')
-        print('请输入一项搜索的信息类型及内容，以空格分隔，如:"电话号码 123"')
+        print('请输入一项搜索的信息类型及内容，以空格分隔，如:"手机号码 123"')
         print('可选数据类型: 工号,姓名,年龄,职称,系名,主授课程,手机号码,联系地址')
         try:
             key,value=input('请输入要搜索的信息: ').split()

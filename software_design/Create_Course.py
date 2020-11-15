@@ -16,6 +16,7 @@ def Course_Menu():  #主菜单
     menu.add_row(['1','查看当前所有课程'])
     menu.add_row(['2','开设一门新的课程'])
     print(menu.get_string(title='课程选项'))
+    Choose_Function()
 
 def Choose_Function():  #选择功能
     Function={
@@ -23,7 +24,7 @@ def Choose_Function():  #选择功能
         '2':Create_Course,
         'quit':exit,
     }
-    choice=input('请选择功能，输入quit退出')
+    choice=input('请选择功能，输入quit退出: ')
     Function.get(choice,error)()
 
 def error():    #默认选项
