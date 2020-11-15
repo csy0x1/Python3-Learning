@@ -1,3 +1,13 @@
+#!/usr/bin/python3
+#encoding:utf-8
+'''
+@File    :   Main.py
+@Time    :   2020/11/12 21:32:24
+@Author  :   csy_x 
+@Version :   1.0
+'''
+# Start
+
 '''
 教师管理系统主菜单
 Todo:
