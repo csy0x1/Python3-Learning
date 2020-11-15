@@ -66,11 +66,25 @@ def Modify(key,value,tid):    #修改教师信息
 def Search_Course(): #查看课程
     conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
     c=conn.cursor() #数据库指针
-    info=c.execute("select * from Course_info")
+    info=c.execute("select ID as 工号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
+        from Teachers_info inner join course_info\
+        On Teachers_info.ID=Course_info.T_ID\
+        Union\
+        select ID as 工号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
+        from Teachers_info left outer join course_info\
+        On Teachers_info.ID=Course_info.T_ID")
     table=from_db_cursor(info)
     print(table.get_string(title='全部课程信息'))
     c.close()
     conn.close()
+    '''
+    应使用的SQL语句
+    select ID as 工号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时 from Teachers_info inner join course_info
+        On Teachers_info.ID=Course_info.T_ID
+    Union
+        select ID as 工号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时 from Teachers_info left outer join course_info
+        On Teachers_info.ID=Course_info.T_ID
+    '''
 
 def Insert_Course(course): #开设课程
     conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
@@ -85,4 +99,29 @@ def Insert_Course(course): #开设课程
         return 1
     except(sqlite3.IntegrityError):
         return False
+
+def Search_Hour():  #工作量查询
+    conn=sqlite3.connect('C://Users//Desktop-P21//TeachersDB.db')   #连接到数据库
+    c=conn.cursor() #数据库指针
+    info=c.execute("select ID as 工号,Name as 姓名,Total_Course_Hour as 总开课学时\
+        from Teachers_info inner join course_info\
+        On Teachers_info.ID=Course_info.T_ID\
+        Union\
+        select ID as 工号,Name as 姓名,Total_Course_Hour as 总开课学时\
+        from Teachers_info left outer join course_info\
+        On Teachers_info.ID=Course_info.T_ID\
+		ORDER by Total_Course_Hour DESC")
+    table=from_db_cursor(info)
+    print(table.get_string(title='开课信息'))
+    c.close()
+    conn.close()
+
+    '''
+    select ID as 工号,Name as 姓名,Total_Course_Hour as 总开课学时 from Teachers_info inner join course_info
+            On Teachers_info.ID=Course_info.T_ID
+        Union
+            select ID as 工号,Name as 姓名,Total_Course_Hour as 总开课学时 from Teachers_info left outer join course_info
+            On Teachers_info.ID=Course_info.T_ID
+            ORDER by Total_Course_Hour DESC
+    '''
 

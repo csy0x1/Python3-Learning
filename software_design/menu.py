@@ -7,7 +7,7 @@ Todo:
 4.改    modify.py   11.14 updated
 5.权限系统*
 6.开课系统    Create_Course.py    11.15 updated
-7.工作量检索系统    (WIP)
+7.工作量检索系统    @search.py    11.15 updated
 8.教师ID自动分配*
 '''
 
