@@ -23,11 +23,21 @@ def Modify_Main(tid):  #修改信息
             if(key in keytosqlcolumn):
                 key=keytosqlcolumn[key]
                 Search_Info('ID',tid)
-                Modify(key,value,tid)
-                break
+                result=Modify(key,value,tid)
+                if(result==False):
+                    print('操作失败，请检查后重试!')
+                    break
+                else:
+                    print('操作成功！')
+                    break
             else:
                 print('信息类型错误，请检查后重试')
                 time.sleep(1)
+    else:
+        print('\n暂无相关信息')
+        time.sleep(1)
+    return Modify_Info()
+
 
 def Modify_Info():  #查询信息
     os.system('cls')

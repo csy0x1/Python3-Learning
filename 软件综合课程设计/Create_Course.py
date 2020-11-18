@@ -1,8 +1,8 @@
 '''
 开课系统
 Todo:
-1.至少可以定义课程编号，课程名称，开课学时数，授课教师
-2.授课教师自动同步至教师信息主要教授课程(开课多门时主授课程判定方式有疑虑，非必要，待考虑)
+1.至少可以定义课程编号，课程名称，开课学时数，授课教师 done 11.18 updated
+2.授课教师自动同步至教师信息主要教授课程(开课多门时主授课程判定方式有疑虑，非必要，待考虑) done 11.18 updated
 '''
 
 from database import Insert_Course, Search_Course
@@ -29,6 +29,7 @@ def Choose_Function():  #选择功能
 
 def error():    #默认选项
     print('选项错误')
+    return Course_Menu()
 
 def Create_Course():    #开设新课程
     flag=True   #循环标识符
@@ -47,8 +48,8 @@ def Create_Course():    #开设新课程
                 flag=False
                 break
             else:
-                print('操作失败，请检查信息是否输入正确')
-                print('确保工号输入正确，课程编号无重复')
+                print('\n操作失败，请检查信息是否输入正确')
+                print('\n确保工号输入正确，课程编号无重复')
                 time.sleep(1)
                 continue
         index=0
@@ -64,6 +65,7 @@ def Create_Course():    #开设新课程
         else:
             print('键值不存在!')
             time.sleep(1)
+            return Course_Menu()
 
 
 def Show_Info(info):    #显示课程信息
@@ -77,4 +79,3 @@ def Show_Info(info):    #显示课程信息
 
 if __name__ == '__main__':
     Course_Menu()
-    Choose_Function()

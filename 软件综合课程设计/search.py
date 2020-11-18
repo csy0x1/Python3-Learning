@@ -50,14 +50,17 @@ def Search_Main():  #条件搜索选项
         if(key in keytosqlcolumn):
             key=keytosqlcolumn[key]
             table=Search_Info(key,value)
-            print(table.get_string(title='查询结果'))
-            break
+            if(table!=False):
+                print(table.get_string(title='查询结果'))
+                break
+            else:
+                print('查找不到相关信息!')
+                time.sleep(1)
+                break
         else:
-            print('信息类型错误，请检查后重试')
+            print('\n信息类型错误，请检查后重试')
             time.sleep(1)
-
-def Total_Hour():   #工作量查询
-    pass
+            return Search_Menu()
 
 if __name__=='__main__':    #调试用
     Search_Menu()

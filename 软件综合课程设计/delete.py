@@ -12,8 +12,11 @@ def Delete_Info():
         print("请仔细核对将删除的教师，输入 Confirm Delete ID %s 以继续"%(tid))
         confirm=input()
         if((confirm=='Confirm Delete ID %s'%(tid))):
-            Delete(tid)
-            print('删除成功!')
+            result=Delete(tid)
+            if(result!=False):
+                print('删除成功!')
+            else:
+                print('删除失败!')
         else:
             print('删除失败!')
             time.sleep(1)

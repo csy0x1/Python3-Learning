@@ -2,24 +2,23 @@
 #encoding:utf-8
 '''
 @File    :   Main.py
-@Time    :   2020/11/12 21:32:24
+@Time    :   2020-11-17 19:39:15
 @Author  :   csy_x 
-@Version :   1.0
+@Version :   2.0
+
+教师管理系统主菜单
+Todo:
+1.增    create.py   11.17 updated
+2.删    delete.py   11.17 updated
+3.查    search.py   11.17 updated
+4.改    modify.py   11.17 updated
+5.权限系统*
+6.开课系统    Create_Course.py    11.17 updated
+7.工作量检索系统    @search.py    11.17 updated
+8.教师ID自动分配*
 '''
 # Start
 
-'''
-教师管理系统主菜单
-Todo:
-1.增    create.py   11.12 updated
-2.删    delete.py   11.14 updated
-3.查    search.py   11.13 updated
-4.改    modify.py   11.15 updated
-5.权限系统*
-6.开课系统    Create_Course.py    11.15 updated
-7.工作量检索系统    @search.py    11.15 updated
-8.教师ID自动分配*
-'''
 
 from Create_Course import Course_Menu
 from modify import Modify_Info
@@ -53,6 +52,7 @@ def Choose_Function():  #用户选择所需功能，并跳转至相应界面
 
 def error():  #默认选项
     print('选项错误')
+    return Main_Menu()
 
 if __name__=='__main__':
     Main_Menu()

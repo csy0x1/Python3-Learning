@@ -2,7 +2,7 @@ import sqlite3,datetime,time,os
 conn=sqlite3.connect('C://Users//Desktop-P21//codeDB.db') #连接到数据库
 print('connected')
 c=conn.cursor()
-filename='G:/result.txt' #指定摄像头识别结果输出文件目录
+filename='F:/test/result.txt' #指定摄像头识别结果输出文件目录
 cursor = c.execute("SELECT amount,value from CODE where ID=0") #链接数据库，获取最新的ID编号
 amount=0    #数量
 iid=0       #数据库ID编号
