@@ -2,9 +2,9 @@
 #encoding:utf-8
 '''
 @File    :   Main.py
-@Time    :   2020-11-17 19:39:15
+@Time    :   2020-11-18 14:26:33
 @Author  :   csy_x 
-@Version :   2.0
+@Version :   3.0
 
 教师管理系统主菜单
 Todo:
@@ -13,7 +13,7 @@ Todo:
 3.查    search.py   11.17 updated
 4.改    modify.py   11.17 updated
 5.权限系统*
-6.开课系统    Create_Course.py    11.17 updated
+6.开课系统    Create_Course.py    11.18 updated
 7.工作量检索系统    @search.py    11.17 updated
 8.教师ID自动分配*
 '''
