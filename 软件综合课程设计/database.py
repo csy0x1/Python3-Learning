@@ -35,15 +35,18 @@ def Search_Info(key,value):     #条件搜索信息
     '''
     info=c.execute("select ID as 工号, Name as 姓名, Age as 年龄, Title as 职称, Department as 系名, \
     Course as 主授课程, Phone_Number as 手机号码, Address as 联系地址, Total_Course_Hour as 总开课学时 from Teachers_info where %s='%s'"%(key,value))
-    table=from_db_cursor(info)  
-    if(len(list(table))==0):    #若查询不到信息，返回的表长为0
+    rows=c.fetchall()
+    #table=from_db_cursor(info)  
+    #if(len(list(table))==0):    #若查询不到信息，返回的表长为0
+    if(len(rows)==0):
+        print("\n目前暂无教师信息")
         c.close()
         conn.close()
         return False
     else:
         c.close()
         conn.close()
-        return table
+        return rows
 
 def Search_All():   #显示全部信息
     conn=sqlite3.connect(filename)   #连接到数据库
@@ -51,15 +54,19 @@ def Search_All():   #显示全部信息
     try:
         info = c.execute("select ID as 工号, Name as 姓名, Age as 年龄, Title as 职称, Department as 系名, \
             Course as 主授课程, Phone_Number as 手机号码, Address as 联系地址, Total_Course_Hour as 总开课学时 from Teachers_info")
-        table=from_db_cursor(info)
-        if(len(list(table))==0):
+        rows=c.fetchall()
+        #table=from_db_cursor(info)
+        if(len(rows)==0):
             print("\n目前暂无教师信息")
             #time.sleep(1)
             return False
         else:
-            print(table.get_string(title='全部教师信息'))
+            #print(table.get_string(title='全部教师信息'))
+            row=len(rows)
+            #print(row)
             c.close()
             conn.close()
+            return row,rows
     except(sqlite3.Error):
         c.close()
         conn.close()
@@ -80,15 +87,20 @@ def Delete(tid):    #删除教师信息
         conn.close()
         return False
 
-def Modify(key,value,tid):    #修改教师信息
+def Modify(data):    #修改教师信息
     conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     try:
-        c.execute("update Teachers_info set '%s'='%s' where ID='%s'"%(key,value,tid))
+    #c.execute("update Teachers_info set '%s'='%s' where ID='%s'"%(key,value,tid))
+        c.execute("update Teachers_info set Name='%s',Age=%d,Title='%s',Department='%s',Phone_Number='%s'\
+        ,Address='%s' where ID='%s'"%(data[1],int(data[2]),data[3],data[4],data[5],data[6],data[0]))
         conn.commit()
         c.close()
         conn.close()
+        return True
     except(sqlite3.Error):
+        test=sqlite3.Error.args[0]
+        print(test)
         c.close()
         conn.close()
         return False
@@ -97,11 +109,11 @@ def Search_Course(): #查看课程
     conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     try:
-        info=c.execute("select ID as 工号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
+        info=c.execute("select ID as 课程编号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
             from Teachers_info inner join course_info\
             On Teachers_info.ID=Course_info.T_ID\
             Union\
-            select ID as 工号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
+            select ID as 课程编号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
             from Teachers_info left outer join course_info\
             On Teachers_info.ID=Course_info.T_ID")
         table=from_db_cursor(info)

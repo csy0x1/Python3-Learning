@@ -13,6 +13,7 @@ def removefile():   #移除文件
         pass
 
 def Connect_DB():   #连接数据库
+    
     conn=sqlite3.connect('C://Users//Desktop-P21//codeDB.db') #连接到数据库
     c=conn.cursor()
     return conn,c

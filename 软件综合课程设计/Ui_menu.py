@@ -23,6 +23,7 @@ class Ui_Main_Menu(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.setStyleSheet
         #self.pushButton_2.clicked.connect()
         self.verticalLayout.addWidget(self.pushButton_2)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
