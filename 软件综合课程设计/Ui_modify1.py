@@ -46,6 +46,8 @@ class Ui_Modify1(object):
         self.pushButton = QtWidgets.QPushButton(Form)
         self.pushButton.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton, 1, 1, 1, 1)
+        self.tableWidget.setEditTriggers(self.tableWidget.NoEditTriggers)
+
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

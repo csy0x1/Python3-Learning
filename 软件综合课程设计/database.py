@@ -82,6 +82,7 @@ def Delete(tid):    #删除教师信息
         conn.commit()
         c.close()
         conn.close()
+        return True
     except(sqlite3.Error):  #删除行数为0行(删除不存在的数据)时不报错
         c.close()
         conn.close()
