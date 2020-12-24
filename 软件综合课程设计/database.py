@@ -110,21 +110,20 @@ def Search_Course(): #查看课程
     conn=sqlite3.connect(filename)   #连接到数据库
     c=conn.cursor() #数据库指针
     try:
-        info=c.execute("select ID as 课程编号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
+        info=c.execute("select C_ID as 课程编号,C_Name as 课程名称,Name as 教师姓名,C_Hour as 课程学时\
             from Teachers_info inner join course_info\
-            On Teachers_info.ID=Course_info.T_ID\
-            Union\
-            select ID as 课程编号,C_Name as 课程名称,Name as 姓名,C_Hour as 课程学时\
-            from Teachers_info left outer join course_info\
             On Teachers_info.ID=Course_info.T_ID")
-        table=from_db_cursor(info)
-        if(len(list(table))==0):
+        #table=from_db_cursor(info)
+        rows=c.fetchall()
+        if(len(rows)==0):
             print('\n暂无课程信息！')
             return False
         else:
-            print(table.get_string(title='全部课程信息'))
+            #print(table.get_string(title='全部课程信息'))
+            row=len(rows)
             c.close()
             conn.close()
+            return row,rows
     except(sqlite3.Error):
         c.close()
         conn.close()

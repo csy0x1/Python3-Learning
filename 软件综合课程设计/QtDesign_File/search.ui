@@ -23,7 +23,7 @@
      </column>
      <column>
       <property name="text">
-       <string>新建列</string>
+       <string>姓名</string>
       </property>
      </column>
      <column>
@@ -33,7 +33,7 @@
      </column>
      <column>
       <property name="text">
-       <string>新建列</string>
+       <string>职称</string>
       </property>
      </column>
      <column>

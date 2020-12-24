@@ -44,6 +44,7 @@ class Ui_Search(object):
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout.addWidget(self.pushButton)
         self.tableWidget.setEditTriggers(self.tableWidget.NoEditTriggers)
+        self.tableWidget.horizontalHeader().sectionResizeMode(QtWidgets.QHeaderView.Stretch)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

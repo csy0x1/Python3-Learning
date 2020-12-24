@@ -1,9 +1,11 @@
+from Ui_create_course import Ui_Create_Course_Form
+from Ui_course_search import Ui_Couorse_Search
 from PyQt5.QtCore import pyqtSignal
 from Ui_delete2 import Ui_Delete2
 from Ui_modify2 import Ui_Modify2_Form
 from Ui_modify1 import Ui_Modify1
 from Ui_search import Ui_Search, Ui_Search
-from database import Delete, Insert_Info, Modify, Search_All, Search_Info
+from database import Delete, Insert_Info, Modify, Search_All, Search_Course, Search_Info
 from Ui_menu import *
 from Ui_create import *
 from PyQt5.QtWidgets import QApplication,QMainWindow,QDialog, QMessageBox, QTableWidgetItem, QWidget
@@ -20,6 +22,7 @@ class MainWindow(QMainWindow):  #主窗口
         self.main_ui.pushButton_3.clicked.connect(self.SearchForm) #搜索信息按钮
         self.main_ui.pushButton.clicked.connect(self.Modify1Form)  #修改信息按钮
         self.main_ui.pushButton_5.clicked.connect(self.Delete1Form) #删除信息按钮
+        self.main_ui.pushButton_4.clicked.connect(self.CSearchForm) #课程信息按钮
 
     def CreateForm(self):    #跳转到创建窗口，隐藏主窗口
         self.crea=CreateWindow()
@@ -39,6 +42,11 @@ class MainWindow(QMainWindow):  #主窗口
     def Delete1Form(self):
         self.delete1=DeleteWindow1()
         self.delete1.show()
+        self.close()
+
+    def CSearchForm(self):
+        self.csearch=Course_Search_Window()
+        self.csearch.show()
         self.close()
 
 class CreateWindow(QDialog):    #录入信息窗口
@@ -146,7 +154,7 @@ class ModifyWindow1(QWidget):   #展示可供修改的信息窗口
         self.main=MainWindow()
         self.main.show()
         self.close()
-        
+
     '''
     def Modify2(self,rows): #进入编辑窗口
         self.modify2_ui=ModifyWindow2(rows)
@@ -273,6 +281,42 @@ class DeleteWindow2(QWidget):   #确认删除信息窗口
             self.close()
         else:
             QMessageBox.critical(self,'失败','操作失败',QMessageBox.Yes)
+
+class Course_Search_Window(QWidget):    #课程信息窗口
+    def __init__(self):
+        QWidget.__init__(self)
+        self.CSearch=Ui_Couorse_Search()
+        self.CSearch.setupUi(self)
+        self.CSearch.pushButton.clicked.connect(self.MainW)
+        self.CSearch.pushButton_2.clicked.connect(self.Create_Course)
+        self.data()
+
+    def MainW(self):
+        self.main=MainWindow()
+        self.main.show()
+        self.close()
+
+    def data(self):   #填充数据
+        self.CSearch.tableWidget.clearContents()
+        self.row,self.table=Search_Course()
+        self.CSearch.tableWidget.setColumnCount(4)
+        self.CSearch.tableWidget.setRowCount(self.row)
+        for i in range(self.row):
+            for j in range(4):
+                temp_data=self.table[i][j]
+                data=QTableWidgetItem(str(temp_data))
+                self.CSearch.tableWidget.setItem(i,j,data)
+
+    def Create_Course(self):
+        self.CCreate=CCreate()
+        self.CCreate.show()
+
+class CCreate(QWidget):     #课程创建窗口
+    def __init__(self):
+        QWidget.__init__(self)
+        self.CCreate=Ui_Create_Course_Form()
+        self.CCreate.setupUi(self)
+        self.CCreate.pushButton.clicked.connect(self.close)
 
 
 if __name__ == '__main__':   
