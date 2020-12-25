@@ -15,7 +15,4 @@ try:
     ser.close()
 
 except Exception as e:
-    print("error: ",e)
-
-except PermissionError:
     pass
